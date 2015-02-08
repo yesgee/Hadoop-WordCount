@@ -1,0 +1,18 @@
+Question 1. a)
+
+Please add your 6-10 sentence explanation to below in this file.
+=================================================================
+
+Input:
+
+vanrikki-stool.txt is placed in input folder of hdfs.
+
+Mapper:
+The mapper tokenizes the input file by spaces and punctuation marks so that the punctuations don't get considered along with the words. Each key (word) value (one) is written to reducer.
+
+Reducer:
+The reducer adds all one's (1) with respect to each key and returns the sum which is the number of times the word occured in the text. 
+The code also performs case insenstive search to consider similar words in all cases.
+
+Output:
+Output file is present in Part file of output-stool-a folder in question-1

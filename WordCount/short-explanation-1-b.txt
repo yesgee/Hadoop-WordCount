@@ -1,0 +1,22 @@
+Question 1. b)
+
+Please add your 6-10 sentence explanation to below in this file.
+=================================================================
+
+Input:
+vanrikki-stool.txt is placed in input folder of hdfs
+
+Mapper:
+The Mapper tokenizes the input file with spaces and in addition with punctuation marks to avoid punctuations being counted as a word. Case insensitive split is done to consider same words with different cases as one word. Finally, the mapper writes each word as key and number '1' as value to Combiner.
+
+Combiner:
+
+The combiner adds all values of 1 corresponding to each word (key) and returns the key and sum of values to Reducer
+
+Reducer:
+
+The reducer checks the sum of each key and if it's greater than 100, it returns the output as word as key and sum as value. So only words which occured atleast 100 times in the file get written.
+
+Output:
+
+The output of the map reduce program is returned in output-stool-b folder in question-1

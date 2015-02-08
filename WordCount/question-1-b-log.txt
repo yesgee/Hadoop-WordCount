@@ -1,0 +1,80 @@
+Question 1. b)
+
+Please add your run log along with commands to below in this file.
+===================================================================
+hadoop@hadoop:~/question-1$ start-all.sh
+Warning: $HADOOP_HOME is deprecated.
+
+starting namenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-namenode-hadoop.out
+localhost: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-hadoop.out
+localhost: starting secondarynamenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-secondarynamenode-hadoop.out
+starting jobtracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-jobtracker-hadoop.out
+localhost: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-hadoop.out
+
+
+hadoop@hadoop:~/question-1$ hadoop fs -put vanrikki-stool.txt input
+
+
+hadoop@hadoop:~/question-1$ javac -classpath /home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d top_count_classes TopCount.java
+
+
+hadoop@hadoop:~/question-1$ jar -cvf topcount.jar -C top_count_classes/ .
+added manifest
+adding: org/(in = 0) (out= 0)(stored 0%)
+adding: org/hwone/(in = 0) (out= 0)(stored 0%)
+adding: org/hwone/TopCount$Combine.class(in = 1658) (out= 703)(deflated 57%)
+adding: org/hwone/TopCount.class(in = 2055) (out= 996)(deflated 51%)
+adding: org/hwone/TopCount$Reduce.class(in = 1196) (out= 482)(deflated 59%)
+adding: org/hwone/TopCount$Map.class(in = 1969) (out= 839)(deflated 57%)
+
+
+hadoop@hadoop:~/question-1$ hadoop jar topcount.jar org.hwone.TopCount input output-stool-b
+Warning: $HADOOP_HOME is deprecated.
+
+14/11/10 05:27:10 INFO input.FileInputFormat: Total input paths to process : 1
+14/11/10 05:27:10 INFO util.NativeCodeLoader: Loaded the native-hadoop library
+14/11/10 05:27:10 WARN snappy.LoadSnappy: Snappy native library not loaded
+14/11/10 05:27:12 INFO mapred.JobClient: Running job: job_201411100517_0001
+14/11/10 05:27:13 INFO mapred.JobClient:  map 0% reduce 0%
+14/11/10 05:29:10 INFO mapred.JobClient:  map 100% reduce 0%
+14/11/10 05:30:14 INFO mapred.JobClient:  map 100% reduce 100%
+14/11/10 05:31:10 INFO mapred.JobClient: Job complete: job_201411100517_0001
+14/11/10 05:31:10 INFO mapred.JobClient: Counters: 29
+14/11/10 05:31:10 INFO mapred.JobClient:   Job Counters 
+14/11/10 05:31:10 INFO mapred.JobClient:     Launched reduce tasks=1
+14/11/10 05:31:10 INFO mapred.JobClient:     SLOTS_MILLIS_MAPS=167042
+14/11/10 05:31:10 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+14/11/10 05:31:10 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+14/11/10 05:31:10 INFO mapred.JobClient:     Launched map tasks=1
+14/11/10 05:31:10 INFO mapred.JobClient:     Data-local map tasks=1
+14/11/10 05:31:10 INFO mapred.JobClient:     SLOTS_MILLIS_REDUCES=64287
+14/11/10 05:31:10 INFO mapred.JobClient:   File Output Format Counters 
+14/11/10 05:31:10 INFO mapred.JobClient:     Bytes Written=204
+14/11/10 05:31:10 INFO mapred.JobClient:   FileSystemCounters
+14/11/10 05:31:10 INFO mapred.JobClient:     FILE_BYTES_READ=264
+14/11/10 05:31:10 INFO mapred.JobClient:     HDFS_BYTES_READ=140926
+14/11/10 05:31:10 INFO mapred.JobClient:     FILE_BYTES_WRITTEN=112831
+14/11/10 05:31:10 INFO mapred.JobClient:     HDFS_BYTES_WRITTEN=204
+14/11/10 05:31:10 INFO mapred.JobClient:   File Input Format Counters 
+14/11/10 05:31:10 INFO mapred.JobClient:     Bytes Read=140822
+14/11/10 05:31:10 INFO mapred.JobClient:   Map-Reduce Framework
+14/11/10 05:31:10 INFO mapred.JobClient:     Map output materialized bytes=264
+14/11/10 05:31:10 INFO mapred.JobClient:     Map input records=5153
+14/11/10 05:31:10 INFO mapred.JobClient:     Reduce shuffle bytes=264
+14/11/10 05:31:10 INFO mapred.JobClient:     Spilled Records=54
+14/11/10 05:31:10 INFO mapred.JobClient:     Map output bytes=220955
+14/11/10 05:31:10 INFO mapred.JobClient:     Total committed heap usage (bytes)=213843968
+14/11/10 05:31:10 INFO mapred.JobClient:     CPU time spent (ms)=2990
+14/11/10 05:31:10 INFO mapred.JobClient:     Combine input records=22794
+14/11/10 05:31:10 INFO mapred.JobClient:     SPLIT_RAW_BYTES=104
+14/11/10 05:31:10 INFO mapred.JobClient:     Reduce input records=27
+14/11/10 05:31:10 INFO mapred.JobClient:     Reduce input groups=27
+14/11/10 05:31:10 INFO mapred.JobClient:     Combine output records=27
+14/11/10 05:31:10 INFO mapred.JobClient:     Physical memory (bytes) snapshot=213372928
+14/11/10 05:31:10 INFO mapred.JobClient:     Reduce output records=27
+14/11/10 05:31:10 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=771866624
+14/11/10 05:31:10 INFO mapred.JobClient:     Map output records=22794
+hadoop@hadoop:~/question-1$ hadoop fs -copyToLocal output-stool-b output-stool-b
+Warning: $HADOOP_HOME is deprecated.
+
+
